@@ -25,8 +25,8 @@ jobs:
       - name: 🔢 Bump version number
         run: dart tools/bump_version.dart
 
-      # - name: 🛠 B Build APK
-      #   run: flutter build apk --release
+      - name: 🛠 B Build APK
+        run: flutter build apk --release
 
       - name: 📦 Upload APK to Pgyer
         run: cd tools/ && sh ./upload_to_pgyer.sh
