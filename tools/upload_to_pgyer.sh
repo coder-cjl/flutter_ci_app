@@ -11,7 +11,7 @@ if [ -z "$api_token" ]; then
 fi
 
 echo "开始上传 APK 到 Pgyer..."
-"$fir_cli_path -k $api_token $apk_path"
+sh "$fir_cli_path -k $api_token $apk_path"
 
 if [ $? -ne 0 ]; then
   echo "上传 APK 到 Pgyer 失败。"
