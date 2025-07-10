@@ -17,9 +17,14 @@ void main() {
 
   final version = match.group(1);
   final buildNumber = match.group(2) ?? '0';
-  final versionParts = version.split('.');
-  if (versionParts.length != 3) {
+  final versionParts = version?.split('.');
+  if (versionParts?.length != 3) {
     print('Invalid version format in pubspec.yaml.');
+    return;
+  }
+
+  if (versionParts == null) {
+    print('Version parts could not be parsed.');
     return;
   }
 
