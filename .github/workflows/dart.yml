@@ -27,3 +27,6 @@ jobs:
 
       - name: 🛠 B Build APK
         run: flutter build apk --release
+
+      - name: 📦 Upload APK to Pgyer
+        run: bash tools/upload_to_pgyer.sh
