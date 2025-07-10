@@ -29,4 +29,4 @@ jobs:
         run: flutter build apk --release
 
       - name: 📦 Upload APK to Pgyer
-        run: bash tools/upload_to_pgyer.sh
+        run: cd tools/ && sh ./upload_to_pgyer.sh
