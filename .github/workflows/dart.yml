@@ -14,7 +14,7 @@ jobs:
       - name: 🧾 Checkout code
         uses: actions/checkout@v4
 
-      - name: 📦 Setup Flutter
+      - name: 🧰 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.32.6'
@@ -22,5 +22,8 @@ jobs:
       - name: 📦 Install dependencies
         run: flutter pub get
 
-      - name: 📦 Build APK
+      - name: 🔢 Bump version number
+        run: dart tools/bump_version.dart
+
+      - name: 🛠 B Build APK
         run: flutter build apk --release
