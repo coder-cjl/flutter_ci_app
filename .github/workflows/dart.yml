@@ -19,26 +19,26 @@ jobs:
         with:
           flutter-version: '3.32.6'
 
-      - name: 📦 Install dependencies
-        run: flutter pub get
+      # - name: 📦 Install dependencies
+      #   run: flutter pub get
 
-      - name: 🔢 Bump version number
-        run: dart tools/bump_version.dart
+      # - name: 🔢 Bump version number
+      #   run: dart tools/bump_version.dart
 
-      - name: 🛠 Build APK
-        id: build_apk
-        run: |
-          flutter build apk --release
-          echo "apk_path=$(pwd)/build/app/outputs/flutter-apk/app-release.apk" >> $GITHUB_OUTPUT
-
-      # - name: Download go-fir-cli
+      # - name: 🛠 Build APK
+      #   id: build_apk
       #   run: |
-      #     echo "Downloading go-fir-cli..."
-      #     curl -L https://github.com/PGYER/go-fir-cli/releases/download/0.0.10/go-fir-cli-0.0.10-linux-arm64.tar.gz | tar xz -C tools
-      #     chmod +x tools/go-fir-cli
-      #     ls -l tools/
+      #     flutter build apk --release
+      #     echo "apk_path=$(pwd)/build/app/outputs/flutter-apk/app-release.apk" >> $GITHUB_OUTPUT
 
-      - name: 📦 Upload APK to Pgyer
+      - name: Download go-fir-cli
         run: |
-          echo "Uploading APK to Pgyer..."
-          bash tools/pgyer_upload.sh -k a7d3b217e7132bd0b79ffa45f35651b3 ${{ steps.build_apk.outputs.apk_path }}
+          echo "Downloading go-fir-cli..."
+          curl -L https://github.com/PGYER/go-fir-cli/releases/download/0.0.10/go-fir-cli-0.0.10-linux-arm64.tar.gz | tar xz -C tools
+          chmod +x tools/go-fir-cli
+          file tools/go-fir-cli
+
+      # - name: 📦 Upload APK to Pgyer
+      #   run: |
+      #     echo "Uploading APK to Pgyer..."
+      #     bash tools/pgyer_upload.sh -k a7d3b217e7132bd0b79ffa45f35651b3 ${{ steps.build_apk.outputs.apk_path }}
