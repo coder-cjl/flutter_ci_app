@@ -5,6 +5,10 @@ apk_path="../build/app/outputs/flutter-apk/app-release.apk"
 fir_cli_path="./pgyer_upload.sh"
 api_token=$FIR_TOKEN
 
+sh "set -x"
+sh "ls -la"
+sh "pwd"
+
 if [ -z "$api_token" ]; then
   echo "请设置 FIR_TOKEN 环境变量。"
   exit 1
