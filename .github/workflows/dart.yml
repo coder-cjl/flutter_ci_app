@@ -40,4 +40,3 @@ jobs:
         # env:
         #   FIR_TOKEN: ${{ secrets.FIR_TOKEN }}
         #   APK_PATH: ${{ steps.build_apk.outputs.apk_path }}
-          s
