@@ -31,17 +31,18 @@ jobs:
           flutter build apk --release
           echo "apk_path=$(pwd)/build/app/outputs/flutter-apk/app-release.apk" >> $GITHUB_OUTPUT
 
-      - name: Download go-fir-cli
-        run: |
-          echo "Downloading go-fir-cli..."
-          curl -L https://github.com/PGYER/go-fir-cli/releases/download/0.0.10/go-fir-cli-0.0.10-linux-arm64.tar.gz | tar xz -C tools
-          chmod +x tools/go-fir-cli
-          ls -l tools/
+      # - name: Download go-fir-cli
+      #   run: |
+      #     echo "Downloading go-fir-cli..."
+      #     curl -L https://github.com/PGYER/go-fir-cli/releases/download/0.0.10/go-fir-cli-0.0.10-linux-arm64.tar.gz | tar xz -C tools
+      #     chmod +x tools/go-fir-cli
+      #     ls -l tools/
 
       - name: 📦 Upload APK to Pgyer
         run: |
           echo "Uploading APK to Pgyer..."
           echo "build_apk_path=${{ steps.build_apk.outputs.apk_path }}"
           echo "fir_token=${{ secrets.FIR_TOKEN }}"
-          tools/go-fir-cli login -t ${{ secrets.FIR_TOKEN }}
-          tools/go-fir-cli upload -f ${{ steps.build_apk.outputs.apk_path }}
+          sh tools/pgyer_upload.sh -k ${{ secrets.FIR_TOKEN }} ${{ steps.build_apk.outputs.apk_path }}
+          # tools/go-fir-cli login -t ${{ secrets.FIR_TOKEN }}
+          # tools/go-fir-cli upload -f ${{ steps.build_apk.outputs.apk_path }}
