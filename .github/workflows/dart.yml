@@ -35,8 +35,8 @@ jobs:
         run: |
           echo "Uploading APK to Pgyer..."
           echo "build_apk_path=${{ steps.build_apk.outputs.apk_path }}"
-          echo "PGYER_API_KEY=${{ secrets.PGYER_API_KEY }}"
-          sh tools/upload_upload.sh -k ${{ secrets.PGYER_API_KEY }} ${{ steps.build_apk.outputs.apk_path }}
+          echo "PGYER_API_KEY=${{ secrets.FIR_TOKEN }}"
+          sh tools/upload_upload.sh -k ${{ secrets.FIR_TOKEN }} -f ${{ steps.build_apk.outputs.apk_path }}
         # env:
         #   FIR_TOKEN: ${{ secrets.FIR_TOKEN }}
         #   APK_PATH: ${{ steps.build_apk.outputs.apk_path }}
