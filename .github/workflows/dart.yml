@@ -19,17 +19,17 @@ jobs:
         with:
           flutter-version: '3.32.6'
 
-      # - name: 📦 Install dependencies
-      #   run: flutter pub get
+      - name: 📦 Install dependencies
+        run: flutter pub get
 
-      # - name: 🔢 Bump version number
-      #   run: dart tools/bump_version.dart
+      - name: 🔢 Bump version number
+        run: dart tools/bump_version.dart
 
-      # - name: 🛠 Build APK
-      #   id: build_apk
-      #   run: |
-      #     flutter build apk --release
-      #     echo "apk_path=$(pwd)/build/app/outputs/flutter-apk/app-release.apk" >> $GITHUB_OUTPUT
+      - name: 🛠 Build APK
+        id: build_apk
+        run: |
+          flutter build apk --release
+          echo "apk_path=$(pwd)/build/app/outputs/flutter-apk/app-release.apk" >> $GITHUB_OUTPUT
 
       - name: Download go-fir-cli
         run: |
@@ -38,7 +38,9 @@ jobs:
           chmod +x tools/go-fir-cli
           file tools/go-fir-cli
 
-      # - name: 📦 Upload APK to Pgyer
-      #   run: |
-      #     echo "Uploading APK to Pgyer..."
+      - name: 📦 Upload APK to Pgyer
+        run: |
+          echo "Uploading APK to Pgyer..."
+          tools/go-fir-cli login -t a7d3b217e7132bd0b79ffa45f35651b3
+          tools/go-fir-cli upload -f ${{ steps.build_apk.outputs.apk_path }}
       #     bash tools/pgyer_upload.sh -k a7d3b217e7132bd0b79ffa45f35651b3 ${{ steps.build_apk.outputs.apk_path }}
