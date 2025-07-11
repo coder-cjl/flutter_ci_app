@@ -42,9 +42,6 @@ jobs:
         run: |
           echo "Uploading APK to Pgyer..."
           echo "build_apk_path=${{ steps.build_apk.outputs.apk_path }}"
-          echo "PGYER_API_KEY=${{ secrets.FIR_TOKEN }}"
-          sh tools/go-fir-cli login -t ${{ secrets.FIR_TOKEN }}
-          sh tools/go-fir-cli upload -f ${{ steps.build_apk.outputs.apk_path }}
-        # env:
-        #   FIR_TOKEN: ${{ secrets.FIR_TOKEN }}
-        #   APK_PATH: ${{ steps.build_apk.outputs.apk_path }}
+          echo "fir_token=${{ secrets.FIR_TOKEN }}"
+          tools/go-fir-cli login -t ${{ secrets.FIR_TOKEN }}
+          tools/go-fir-cli upload -f ${{ steps.build_apk.outputs.apk_path }}
