@@ -43,6 +43,6 @@ jobs:
           echo "Uploading APK to Pgyer..."
           echo "build_apk_path=${{ steps.build_apk.outputs.apk_path }}"
           echo "fir_token=${{ secrets.FIR_TOKEN }}"
-          sh tools/pgyer_upload.sh -k ${{ secrets.FIR_TOKEN }} ${{ steps.build_apk.outputs.apk_path }}
+          bash tools/pgyer_upload.sh -k ${{ secrets.FIR_TOKEN }} ${{ steps.build_apk.outputs.apk_path }}
           # tools/go-fir-cli login -t ${{ secrets.FIR_TOKEN }}
           # tools/go-fir-cli upload -f ${{ steps.build_apk.outputs.apk_path }}
