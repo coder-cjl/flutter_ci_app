@@ -2,7 +2,7 @@
 
 # 上传fir
 apk_path="$1"
-fir_cli_path="./pgyer_upload.sh"
+fir_cli_path="tools/pgyer_upload.sh"
 api_token=$FIR_TOKEN
 
 set -x
