@@ -37,5 +37,5 @@ jobs:
           sh tools/upload_to_pgyer.sh
         env:
           FIR_TOKEN: ${{ secrets.FIR_TOKEN }}
-        env:
           APK_PATH: ${{ steps.build_apk.outputs.apk_path }}
+          
