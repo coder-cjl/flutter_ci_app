@@ -26,9 +26,16 @@ jobs:
         run: dart tools/bump_version.dart
 
       - name: 🛠 Build APK
-        run: flutter build apk --release 
+        id: build_apk
+        run: |
+          flutter build apk --release
+          echo "apk_path=$(pwd)/build/app/outputs/flutter-apk/app-release.apk" >> $GITHUB_OUTPUT
 
       - name: 📦 Upload APK to Pgyer
-        run: cd tools/ && sh ./upload_to_pgyer.sh
+        run: |
+          echo "Uploading APK to Pgyer..."
+          sh tools/upload_to_pgyer.sh
         env:
           FIR_TOKEN: ${{ secrets.FIR_TOKEN }}
+        env:
+          APK_PATH: ${{ steps.build_apk.outputs.apk_path }}
